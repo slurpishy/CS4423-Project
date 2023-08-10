@@ -16,11 +16,11 @@ public class SkyController : MonoBehaviour
     {
         if (AutoMoonRotate)
         {
-            _Moon.Rotate(-1.2f * Time.deltaTime, 0, 0);
+            _Moon.Rotate(-1.5f * Time.deltaTime, 0, 0);
         }
         if (AutoSunRotate)
         {
-            _Sun.Rotate(-2.5f * Time.deltaTime, 0, 0);
+            _Sun.Rotate(-2.9f * Time.deltaTime, 0, 0);
         }
     }
 

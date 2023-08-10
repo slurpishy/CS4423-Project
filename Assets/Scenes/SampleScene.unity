@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 774485790}
-  m_IndirectSpecularColor: {r: 356.83096, g: 239.4429, b: 279.03323, a: 1}
+  m_IndirectSpecularColor: {r: 277.20242, g: 186.69496, b: 216.03421, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -293,7 +293,7 @@ MonoBehaviour:
   obstacleGenerator: {fileID: 642748795}
   particlePrefab: {fileID: 9001930020090848794, guid: a3bfe96f0680dcd44bc4ae842d95c085, type: 3}
   HealthBar: {fileID: 1632782971}
-  hasSpecialProjectile: 1
+  hasSpecialProjectile: 0
   maxHealth: 10
   camAnim: {fileID: 0}
   waveText: {fileID: 1868371356}
@@ -439,7 +439,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494530835}
-  m_LocalRotation: {x: -0.42252496, y: -0, z: -0, w: 0.9063513}
+  m_LocalRotation: {x: -0.12200045, y: -0, z: -0, w: 0.9925301}
   m_LocalPosition: {x: 0.07559347, y: 1.789819, z: -3.0683458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -447,7 +447,7 @@ Transform:
   - {fileID: 1676108852}
   m_Father: {fileID: 0}
   m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: -49.988, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -14.015, y: 0, z: 0}
 --- !u!1 &642748793
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,14 +633,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774485789}
-  m_LocalRotation: {x: 0.9702499, y: -0.07691592, z: 0.19841251, w: -0.11546273}
+  m_LocalRotation: {x: 0.976167, y: -0.061866123, z: 0.2036077, w: -0.04259783}
   m_LocalPosition: {x: 0.03531359, y: -0.77548015, z: 1.4980097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2021431264}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: -11.159, y: 875.761, z: 191.469}
+  m_LocalEulerAnglesHint: {x: -3.323, y: 876.205, z: 187.953}
 --- !u!114 &774485792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7649,7 +7649,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.3820755, g: 0.5175564, b: 1, a: 1}
-  m_Intensity: 105386
+  m_Intensity: 130000
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7706,14 +7706,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676108850}
-  m_LocalRotation: {x: -0.08081521, y: -0.91896516, z: -0.33073333, w: 0.19896588}
+  m_LocalRotation: {x: -0.13414147, y: -0.9751031, z: -0.05527555, w: 0.1677045}
   m_LocalPosition: {x: 0.17367625, y: 0.38192648, z: 1.4554427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 494530836}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: -39.794, y: -156.024, z: 361.262}
+  m_LocalEulerAnglesHint: {x: -8.789, y: -161.583, z: 374.238}
 --- !u!114 &1676108853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7726,7 +7726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 105386
+  m_Intensity: 130000
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -7757,7 +7757,7 @@ MonoBehaviour:
   m_UseScreenSpaceShadows: 0
   m_InteractsWithSky: 1
   m_AngularDiameter: 8.28
-  m_FlareSize: 0.79
+  m_FlareSize: 0.64
   m_FlareTint: {r: 1, g: 1, b: 1, a: 1}
   m_FlareFalloff: 60.78
   m_SurfaceTexture: {fileID: 0}
@@ -8345,8 +8345,8 @@ MonoBehaviour:
   maxRefractionDistance: 3.5
   absorptionDistance: 100
   scatteringColor: {r: 0.21725942, g: 0.091847636, b: 0.4528302, a: 1}
-  ambientScattering: 0.399
-  heightScattering: 0.142
+  ambientScattering: 0.423
+  heightScattering: 0.26
   displacementScattering: 0.356
   directLightTipScattering: 0.6
   directLightBodyScattering: 0.5
