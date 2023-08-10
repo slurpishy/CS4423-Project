@@ -15,6 +15,9 @@ public class Cannon : MonoBehaviour
     private float _nextProjectile = 0.1f;
     float _previousFireT;
 
+    // Audio:
+    public AudioSource blastAudio;
+
     void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -41,6 +44,7 @@ public class Cannon : MonoBehaviour
         {
             var cannonBall = Instantiate(cannonBallPrefab, spawnPoint.position, spawnPoint.rotation);
             cannonBall.GetComponent<Rigidbody>().velocity += transform.forward * projectileSpeed;
+            blastAudio.Play();
             _previousFireT = Time.time;
         }
 
@@ -59,10 +63,13 @@ public class Cannon : MonoBehaviour
             // Special cannon ball has a different mat:
             cannonBall.GetComponent<Renderer>().material = mat;
 
+            // Audio:
+            blastAudio.Play();
+
             // In a few seconds, we destroy all enemy pirates.
             Invoke("ClearEnemyPirates", 0.6f);
 
-            // TODO: clear special projectile from gc, but not doing that yet for testing purposes.
+            gameController.hasSpecialProjectile = false;
             _previousFireT = Time.time;
         }
     }

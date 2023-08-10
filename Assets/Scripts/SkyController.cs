@@ -5,39 +5,36 @@ using UnityEngine;
 [ExecuteAlways]
 public class SkyController : MonoBehaviour
 {
-    [SerializeField] Transform _Sun = default;
-    [SerializeField] Transform _Moon = default;
+    public Transform _Sun = default;
+    public Transform _Moon = default;
 
     public bool AutoMoonRotate = false;
     public bool AutoSunRotate = false;
-    private float MoonEndRotDuration = 4.0f;
     // Should be parent objects.
 
     void Update()
     {
         if (AutoMoonRotate)
         {
-            _Moon.Rotate(-0.9f * Time.deltaTime, 0, 0);
+            _Moon.Rotate(-1.2f * Time.deltaTime, 0, 0);
         }
         if (AutoSunRotate)
         {
-            _Sun.Rotate(-1.5f * Time.deltaTime, 0, 0);
+            _Sun.Rotate(-2.5f * Time.deltaTime, 0, 0);
         }
     }
 
-    public IEnumerator ForceMoonEnd()
+    public IEnumerator ForceBodyEnd(Transform body)
     {
-        AutoMoonRotate = false;
-        // Force moon X rot to go to -180.
         float elapsed = 0;
-        Quaternion start = transform.rotation;
-        Quaternion end = Quaternion.Euler(360, 0, 0);
-        while (elapsed < MoonEndRotDuration)
+        float speed = 0.02f;
+        Quaternion end = Quaternion.Euler(-180, 0, 0);
+        while (elapsed < 3f)
         {
-            _Moon.rotation = Quaternion.Lerp(start, end, elapsed / MoonEndRotDuration);
-            elapsed += Time.deltaTime;
+            body.rotation = Quaternion.Lerp(body.rotation, end, elapsed * speed);
+            elapsed = elapsed + Time.deltaTime;
             yield return null;
         }
-        transform.rotation = end;
+        body.rotation = Quaternion.identity;
     }
 }
