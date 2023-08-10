@@ -48,7 +48,12 @@ public class Cannon : MonoBehaviour
             _previousFireT = Time.time;
         }
 
-    
+        if (Input.GetKey(KeyCode.Mouse1) && gameController.hasFiringSpeedPowerup) {
+            _nextProjectile = 0.45f;
+            Invoke("EndDoubleFiringPowerup", 5.0f);
+        }
+
+
         if (Input.GetKey(KeyCode.Mouse2) && gameController.HasSpecialProjectile())
         {
             var cannonBall = Instantiate(cannonBallPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -72,6 +77,10 @@ public class Cannon : MonoBehaviour
             gameController.hasSpecialProjectile = false;
             _previousFireT = Time.time;
         }
+    }
+
+    void EndDoubleFiringPowerup() {
+        _nextProjectile = 0.85f;
     }
 
     public void ClearEnemyPirates()

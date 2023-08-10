@@ -45,9 +45,12 @@ public class Powerup : MonoBehaviour
         Destroy(this.gameObject);
         if (powerupType == PowerupTypes.Health) {
             gameController.addHP();
-        } else {
+        } else if (powerupType == PowerupTypes.GoldenCB) {
             gameController.hasSpecialProjectile = true;
             gameController.showHelpText("Golden Cannon Ball!\nUse the MIDDLE MOUSE CLICK button to kill active Pirates.", 5f);
+        } else {
+            gameController.hasFiringSpeedPowerup = true;
+            gameController.showHelpText("2x Firing Speed!\nRIGHT CLICK to temporarily increase firing speed.", 5f);
         }
     }
 }

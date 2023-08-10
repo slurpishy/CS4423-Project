@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameController : MonoBehaviour
     private bool intermission = false;
 
     public bool hasSpecialProjectile = false;
+    public bool hasFiringSpeedPowerup = false;
 
     public int maxHealth = 10;
     private int health = 10;
@@ -100,8 +102,16 @@ public class GameController : MonoBehaviour
             // Debug until UI:
             Debug.Log("Wave Complete.");
 
-            // Intermission:
-            StartIntermission();
+            // Check if next wave is 6:
+            if (waveCount + 1 > 1) {
+                // You win!
+                EndModelScene.win = true;
+                SceneManager.LoadScene("EndScene");
+            } else {
+
+                // Intermission:
+                StartIntermission();
+            }
 
         }
 
@@ -186,6 +196,13 @@ public class GameController : MonoBehaviour
     }
 
     public void takeHP() {
+        // Check if we're dead:
+        if (health == 1) {
+
+            // You lose.
+            EndModelScene.win = false;
+            SceneManager.LoadScene("EndScene");
+        }
         health -= 1;
         RectTransform picture = HealthBar.GetComponent<RectTransform>();
         picture.anchoredPosition = new Vector2(picture.anchoredPosition.x + (finalHealthBarX / maxHealth), picture.anchoredPosition.y);

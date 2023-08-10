@@ -36,7 +36,7 @@ public class ObstacleGenerator : MonoBehaviour
             GameObject prefab = powerupA;
             if (rInt > 75) {
                 prefab = powerupC;
-            } else if (rInt > 90) {
+            } else if (rInt > 80) {
                 prefab = powerupB;
             }
             GameObject powerup = Instantiate(prefab, spawnPos, Quaternion.identity);
