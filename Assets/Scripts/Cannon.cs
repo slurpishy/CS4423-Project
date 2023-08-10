@@ -12,7 +12,7 @@ public class Cannon : MonoBehaviour
     public Transform spawnPoint;
     public Material mat;
     public float projectileSpeed = 1.5f;
-    private float _nextProjectile = 0.1f;
+    private float _nextProjectile = 0.85f;
     float _previousFireT;
 
     // Audio:
