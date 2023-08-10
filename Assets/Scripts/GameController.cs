@@ -43,9 +43,25 @@ public class GameController : MonoBehaviour
     public AudioSource intermissionAudio;
     public AudioSource damageAudio;
 
+    // Singleton:
+    private static GameController m_instance;
+    public static GameController Instance {
+        get {
+            return m_instance;
+        }
+    }
+
     void Start()
     {
         camAnim = Camera.main.GetComponent<Animation>();
+    }
+
+    void Awake() {
+        m_instance = this;
+    }
+
+    void OnDestroy() {
+        m_instance = null;
     }
 
     void Update() {

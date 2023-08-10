@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
-    public GameController gameController;
     public GameObject enemy;
     public GameObject powerupA;
     public GameObject powerupB;
@@ -12,14 +11,10 @@ public class ObstacleGenerator : MonoBehaviour
     private Vector3 basePos = new Vector3(0.25f, 7.30f, 0.90f);
     private float verticalOffsetBounds = 8.07f;
 
-    void Start()
-    {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-    }
 
     public IEnumerator SpawnEnemy()
     {
-        while (gameController.GetEnemiesRemaining() > 0)
+        while (GameController.Instance.GetEnemiesRemaining() > 0)
         {
             Vector3 spawnPos = new Vector3(Random.Range(-verticalOffsetBounds, verticalOffsetBounds), basePos.y, basePos.z);
             GameObject newEnemy = Instantiate(enemy, spawnPos, Quaternion.identity);
@@ -30,7 +25,7 @@ public class ObstacleGenerator : MonoBehaviour
 
     public IEnumerator SpawnPowerup() {
         int rInt;
-        while (gameController.InIntermission()) {
+        while (GameController.Instance.InIntermission()) {
             Vector3 spawnPos = new Vector3(Random.Range(-verticalOffsetBounds, verticalOffsetBounds), 9.30f, -3.9f);
             rInt = Random.Range(0, 100);
             GameObject prefab = powerupA;

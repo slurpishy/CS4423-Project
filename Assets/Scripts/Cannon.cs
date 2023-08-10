@@ -7,7 +7,6 @@ public class Cannon : MonoBehaviour
 {
     Rigidbody rigidBody;
 
-    public GameController gameController;
     public GameObject cannonBallPrefab;
     public Transform spawnPoint;
     public Material mat;
@@ -17,11 +16,6 @@ public class Cannon : MonoBehaviour
 
     // Audio:
     public AudioSource blastAudio;
-
-    void Start()
-    {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-    }
 
     void Awake()
     {
@@ -48,13 +42,13 @@ public class Cannon : MonoBehaviour
             _previousFireT = Time.time;
         }
 
-        if (Input.GetKey(KeyCode.Mouse1) && gameController.hasFiringSpeedPowerup) {
+        if (Input.GetKey(KeyCode.Mouse1) && GameController.Instance.hasFiringSpeedPowerup) {
             _nextProjectile = 0.45f;
             Invoke("EndDoubleFiringPowerup", 5.0f);
         }
 
 
-        if (Input.GetKey(KeyCode.Mouse2) && gameController.HasSpecialProjectile())
+        if (Input.GetKey(KeyCode.Mouse2) && GameController.Instance.HasSpecialProjectile())
         {
             var cannonBall = Instantiate(cannonBallPrefab, spawnPoint.position, spawnPoint.rotation);
             // We don't interact with anything with a special projectile.
@@ -63,7 +57,7 @@ public class Cannon : MonoBehaviour
             cannonBall.GetComponent<Rigidbody>().velocity += transform.forward * (projectileSpeed * 1.5f);
 
             // Cam anim:
-            // gameController.camAnim.Play("CAM_ATTACK");
+            // GameController.Instance.camAnim.Play("CAM_ATTACK");
 
             // Special cannon ball has a different mat:
             cannonBall.GetComponent<Renderer>().material = mat;
@@ -74,7 +68,7 @@ public class Cannon : MonoBehaviour
             // In a few seconds, we destroy all enemy pirates.
             Invoke("ClearEnemyPirates", 0.6f);
 
-            gameController.hasSpecialProjectile = false;
+            GameController.Instance.hasSpecialProjectile = false;
             _previousFireT = Time.time;
         }
     }
