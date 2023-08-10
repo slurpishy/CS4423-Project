@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ObstacleGenerator : MonoBehaviour
 {
@@ -10,17 +11,55 @@ public class ObstacleGenerator : MonoBehaviour
     public GameObject powerupC;
     private Vector3 basePos = new Vector3(0.25f, 7.30f, 0.90f);
     private float verticalOffsetBounds = 8.07f;
+    public ObjectPool<GameObject> _pool; 
+    
+    private static ObstacleGenerator m_instance;
+    public static ObstacleGenerator Instance
+    {
+        get
+        {
+            return m_instance;
+        }
+    }
 
+    void Start() {
+        // Pool:
+        _pool = new ObjectPool<GameObject>(
+                createFunc: () => Instantiate(enemy),
+                actionOnGet: (obj) => obj.SetActive(true),
+                actionOnRelease: (obj) => obj.SetActive(false),
+                actionOnDestroy: (obj) => Destroy(obj),
+                false,
+                10,
+                10
+            );
+    }
+    void Awake()
+    {
+        m_instance = this;
+    }
+
+    void OnDestroy()
+    {
+        m_instance = null;
+    }
 
     public IEnumerator SpawnEnemy()
     {
         while (GameController.Instance.GetEnemiesRemaining() > 0)
         {
             Vector3 spawnPos = new Vector3(Random.Range(-verticalOffsetBounds, verticalOffsetBounds), basePos.y, basePos.z);
-            GameObject newEnemy = Instantiate(enemy, spawnPos, Quaternion.identity);
-            Destroy(newEnemy, 10);
+            GameObject newEnemy = _pool.Get();
+            newEnemy.transform.position = spawnPos;
+            newEnemy.transform.rotation = Quaternion.identity;
+            newEnemy.SetActive(true);
             yield return new WaitForSeconds(1.0f);
         }
+    }
+
+    private IEnumerator SetEnemyInactive(GameObject enemy, int waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        _pool.Release(enemy);
     }
 
     public IEnumerator SpawnPowerup() {

@@ -52,7 +52,7 @@ public class Pirate : MonoBehaviour
     public void interactWithCannonBall()
     {
         disappearAudio.Play();
-        Destroy(this.gameObject);
+        ObstacleGenerator.Instance._pool.Release(this.gameObject);
         GameController.Instance.decreaseEnemies(transform.position);
     }
 

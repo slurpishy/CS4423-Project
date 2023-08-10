@@ -107,6 +107,9 @@ public class GameController : MonoBehaviour
         generateDeathParticle(position);
         // Enemy defeated.. per Pirate object.
         enemiesRemaining -= 1;
+        if (enemiesRemaining <= 0) {
+            enemiesRemaining = 0;
+        }
         pirateText.text = enemiesRemaining.ToString();
 
         // Debug until UI:
@@ -159,6 +162,9 @@ public class GameController : MonoBehaviour
 
         // Intermission lasts 30 seconds:
         StartCoroutine(EndIntermission());
+
+        // Clear stack or list:
+        ObstacleGenerator.Instance._pool.Dispose();
     }
 
     IEnumerator EndIntermission()
