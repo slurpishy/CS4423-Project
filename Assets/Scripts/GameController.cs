@@ -103,7 +103,7 @@ public class GameController : MonoBehaviour
             Debug.Log("Wave Complete.");
 
             // Check if next wave is 6:
-            if (waveCount + 1 > 1) {
+            if (waveCount + 1 > 5) {
                 // You win!
                 EndModelScene.win = true;
                 SceneManager.LoadScene("EndScene");
