@@ -44,8 +44,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         camAnim = Camera.main.GetComponent<Animation>();
-        skyController = GameObject.FindGameObjectWithTag("SkyController").GetComponent<SkyController>();
-        obstacleGenerator = GameObject.FindGameObjectWithTag("ObstacleGenerator").GetComponent<ObstacleGenerator>();
     }
 
     void Update() {
